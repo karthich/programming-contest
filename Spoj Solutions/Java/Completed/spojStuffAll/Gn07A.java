@@ -17,7 +17,7 @@ import java.lang.Integer;
 	 */
 
 
-public class Gn07a {
+public class Gn07A {
 
 	public static void main(String[] args) {
 		int N,ans[];

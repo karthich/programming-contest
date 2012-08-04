@@ -1,7 +1,8 @@
+package spojStuffAll;
 
 import java.util.Scanner;
 
-public class Main {
+public class DivSum {
 
 	/**
 	 * @param args

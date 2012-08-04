@@ -1,4 +1,5 @@
-package SpojStuff;
+package spojStuffAll;
+
 
 import java.util.PriorityQueue;
 

@@ -1,4 +1,4 @@
-package SpojStuff;
+package spojStuffAll;
 
 import java.math.BigInteger;
 import java.util.Scanner;

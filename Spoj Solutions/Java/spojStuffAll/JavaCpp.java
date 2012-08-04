@@ -1,3 +1,5 @@
+package spojStuffAll;
+
 import java.util.Scanner;
 
 
