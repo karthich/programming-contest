@@ -1,6 +1,10 @@
 package spojStuffAll;
 
 import java.util.Scanner; 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.StringBuilder;
 import java.lang.Integer;
 /**
@@ -19,10 +23,13 @@ import java.lang.Integer;
 
 public class Gn07A {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		int N,ans[];
 		StringBuilder a,b;
 		Scanner in1 = new Scanner(System.in);
+		
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("OutTest.out"))); 
+		
 		N = in1.nextInt();
 		ans = new int[N];
 		for(int i=0;i<N;i++){
@@ -32,7 +39,7 @@ public class Gn07A {
 		}
 		
 		for(int i=0;i<N;i++){
-			System.out.println(ans[i]);
+			out.println(ans[i]);
 		}
 	}
 	
