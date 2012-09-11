@@ -1,4 +1,4 @@
-package spojStuffAll;
+package spojPrograms;
 
 //https://www.spoj.pl/problems/SBANK/
 import java.io.BufferedReader;
