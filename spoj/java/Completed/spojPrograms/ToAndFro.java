@@ -1,4 +1,4 @@
-package spojStuffAll;
+package spojPrograms;
 import java.util.Scanner; 
 import java.lang.StringBuilder;
 import java.lang.Integer;

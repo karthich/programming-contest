@@ -1,4 +1,4 @@
-package spojStuffAll;
+package spojPrograms;
 
 import java.io.BufferedReader;
 import java.io.IOException;

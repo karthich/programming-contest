@@ -1,5 +1,5 @@
 
-package spojStuffAll;
+package spojPrograms;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;
