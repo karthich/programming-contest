@@ -1,5 +1,6 @@
 package spojPrograms;
 
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,7 +13,6 @@ import java.util.Vector;
 
 public class Tree {
 	private static int Nodes, Edges;
-	private static boolean explored[];
 	private static HashMap<Integer, Vector<Integer>> EdgeMap;
 	public static void main(String[] args) {
       
@@ -20,8 +20,6 @@ public class Tree {
 		 Nodes = sc.nextInt();
 		 Edges = sc.nextInt();
 		 EdgeMap = new HashMap<Integer, Vector<Integer>>(Nodes);
-		 explored = new boolean[Nodes];
-		 Arrays.fill(explored, false);
 		 
 		 int n1, n2;
 		 for(int i=0; i< Edges; i++){
@@ -47,45 +45,54 @@ public class Tree {
 			 temp.add(n1);
 			 EdgeMap.put(n2, temp);
      	 }
-		 
+		 System.out.println(isTree(EdgeMap));
 		 
 	}
 	
-	static String HasPath(int start, int end, HashMap<Integer, Vector<Integer>> edgeMap) {
+	static String isTree(HashMap<Integer, Vector<Integer>> edgeMap) {
 	  
-	  
+	   
 	  if(edgeMap.isEmpty()) {
 		  return "YES";
 	  }
 	  
-	  Stack<Integer> st = new Stack<Integer>();
-	  Boolean explored[] = new Boolean[Nodes];
-	  Arrays.fill(explored, false);
+	  int level = 0;
+	  int nodeLevel[] = new int[Nodes];
 	  
-	  int currentNode = start;
-	  explored[0] = true;
-	  Vector<Integer> edges = edgeMap.get(start);
+	  int vertexColor[] = new int[Nodes];
+	  Arrays.fill(vertexColor,0);
+	  Queue<Integer> q = new LinkedList<Integer>();
 	  
+	  for (int u=1; u <= Nodes; u++) {
+	    if(vertexColor[u-1] == 0) {
+	    	vertexColor[u-1] = 1;
 	  
-	  for(Integer node : edges)
-	  {
-		  st.push(node);
+	    	nodeLevel[u-1] = 1;
+	    	q.offer(u);
+	    	
+	    	while(!q.isEmpty()) {
+	    	    //u = st.pop();
+	    		u = q.poll();
+	    		
+	    	    Vector<Integer> neighbors = edgeMap.get(u);
+		    	System.out.println(u + " -> " + nodeLevel[u-1]);
+	    		for(Integer v : neighbors) {
+	    			if(vertexColor[v-1] == 0)
+	    			{
+	    				vertexColor[v-1] = 1;
+	    				nodeLevel[v-1] = nodeLevel[u-1] + 1;
+	    				
+	    				q.offer(v);
+         			} else if((vertexColor[v-1] != 0)  && nodeLevel[v-1] == nodeLevel[u-1]) {
+	    				return "NO";
+	    			}
+	    			
+	    		}
+	    		vertexColor[u-1] = 2;
+	    	}
+	    }
 	  }
-	  int prevNode = start;
-	  while(!st.isEmpty())
-	  {
-		  currentNode = st.pop();
-		  
-		  
-	  }
-	  return "Es";
+	  return "YES";
 	  
 	}
-	
-	
-	
-	
-	 
-	
-	
 }
