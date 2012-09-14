@@ -1,4 +1,4 @@
-package projectEulerStuff;
+package projectEulerPrograms;
 
 import java.awt.geom.Point2D;
 

@@ -1,4 +1,4 @@
-package projectEulerStuff;
+package projectEulerPrograms;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package projectEulerStuff;
+package projectEulerPrograms;
 import java.lang.*;
 
 public class PalindromeSum {

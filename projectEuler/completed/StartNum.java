@@ -1,4 +1,4 @@
-package projectEulerStuff;
+package projectEulerPrograms;
 import java.util.Hashtable;
 
 public class StartNum {

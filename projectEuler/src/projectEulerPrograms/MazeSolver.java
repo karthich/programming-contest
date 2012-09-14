@@ -1,4 +1,4 @@
-package projectEulerStuff;
+package projectEulerPrograms;
 
 public class MazeSolver {
 
