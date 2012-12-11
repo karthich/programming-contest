@@ -3,9 +3,7 @@
 #include<string>
 #define MAX_ACCOUNTS 10000
 using namespace std;
-typedef struct {
-  char acc[26];
-} account;
+
 bool operator < (const string& lhs, const string& rhs)
 {
     for(int i=25;i>=0;i--) {
@@ -20,7 +18,6 @@ bool operator < (const string& lhs, const string& rhs)
 }
 
 int main() {
-  account in[MAX_ACCOUNTS];
   int t;
   char dummy;
   scanf("%d%c",&t,&dummy);
