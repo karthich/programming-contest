@@ -1,26 +1,70 @@
 #include<stdio.h>
-#define MAX_ACCOUNTS 100000
+#include<map>
+#include<string>
+#define MAX_ACCOUNTS 10000
+using namespace std;
+typedef struct {
+  char acc[26];
+} account;
+bool operator < (const string& lhs, const string& rhs)
+{
+    for(int i=25;i>=0;i--) {
+      if((int) lhs[i] < (int) rhs[i]) {    
+        return true;
+      } else if ((int) lhs[i] > (int) rhs[i]){
+        return false;
+      } else {
+        continue;
+      }
+    }
+}
+
 int main() {
-  char in[MAX_ACCOUNTS][26];
+  account in[MAX_ACCOUNTS];
   int t;
-  scanf("%d",&t);
+  char dummy;
+  scanf("%d%c",&t,&dummy);
   int tcount;
+
+  map<string,int> series;
+  map<string,int>::iterator it;
+  char input[26]; 
   char c;
   while(t--) {
-    scanf("%d%c",&tcount,&c);
-    for( int i =0;i<tcount;i++) {
-      scanf("%c%c %c%c%c%c%c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c"
-       ,&in[i][0],&in[i][1]
-       ,&in[i][2],&in[i][3],&in[i][4],&in[i][5]
-       ,&in[i][6],&in[i][7],&in[i][8],&in[i][9]
-       ,&in[i][10],&in[i][11],&in[i][12],&in[i][13]
-       ,&in[i][14],&in[i][15],&in[i][16],&in[i][17]
-       ,&in[i][18],&in[i][19],&in[i][20],&in[i][21]
-       ,&in[i][22],&in[i][23],&in[i][24],&in[i][25]);
+    scanf("%d%c",&tcount,&dummy);
+    for(int i=0;i<tcount;i++) { 
+      int j=0;
+      do {
+        c = getc(stdin);
+        if(c == ' ') continue;
+        else {
+          //in[i][j] = c;
+   	  //in[i].acc[j] = c;
+  	  input[j] = c;
+          j++;
+        }
+      } while(c != '\n');
+      string key(input); 
+      it = series.find(key);
+      if(it != series.end()) {
+        it->second++;
+      } else {
+	series.insert(pair<string,int>(input,1));
+      }
+     	
+    
     }
-    for(int i=0;i<tcount;i++) {
-      printf("%c%c %c%c%c%c%c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c\n",in[i][0],in[i][1],in[i][2],in[i][3],in[i][4],in[i][5],in[i][6],in[i][7],in[i][8],in[i][9],in[i][10],in[i][11],in[i][12],in[i][13],in[i][14],in[i][15],in[i][16],in[i][17],in[i][18],in[i][19],in[i][20],in[i][21],in[i][22],in[i][23],in[i][24],in[i][25]);
+    it = series.begin();
+    for(it = series.begin() ;it!=series.end(); it++) {
+      string x = it->first;
+      const char * ch = x.c_str(); 
+      printf("%c%c %c%c%c%c%c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c %c%c%c%c"
+	     ,ch[0],ch[1],ch[2],ch[3],ch[4],ch[5],ch[6],ch[7],ch[8],ch[9],ch[10],ch[11],ch[12],ch[13],ch[14],ch[15],ch[16],ch[17],ch[18],ch[19],ch[20],ch[21],ch[22],ch[23],ch[24],ch[25]);
+      printf(" %d",it->second);
+      printf("\n");
     }
-  }  
+    series.clear();
+    scanf("%c",&dummy);
+  } 
   return 0;
 }
