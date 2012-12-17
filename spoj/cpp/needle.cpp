@@ -1,18 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define MAX_SIZE 10000
 int main() {
   int w_len;
   char dummy,c;
   int i;
   int j=0;
   int match;
+  char word[MAX_SIZE];
+  int table[MAX_SIZE];
   while(1) {
-    match = scanf("%d%c",&w_len,&dummy);
+    if(scanf("%d%c",&w_len,&dummy)==EOF) break;
+
     //printf("w_len = %d dummy= %c\n",w_len,dummy);
-    char *word;
-    int *table;
-    word = (char*)calloc(w_len,sizeof(char));
-    table =(int*)calloc(w_len,sizeof(int));
+    
+    //word = (char*)calloc(w_len,sizeof(char));
+    //table =(int*)calloc(w_len,sizeof(int));
     
     for(i=0;i<w_len;i++) {
       c = getc(stdin);
@@ -22,8 +25,8 @@ int main() {
     dummy = getc(stdin);
     //printf("dummy= %c",dummy);
     //lets compute the overlap function
-    int *overlap;
-    overlap = (int*) calloc(w_len,sizeof(int));
+    int overlap[MAX_SIZE];
+    //overlap = (int*) calloc(w_len,sizeof(int));
     overlap[0] = -1;
     for(i=0;i<w_len;i++) {
       overlap[i+1] = overlap[i] + 1;
@@ -59,10 +62,7 @@ int main() {
       
     }
     
-    free(table);
-    free(word);
-	free(overlap);
-    
   }
  return 0;
 }
+
