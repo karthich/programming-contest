@@ -1,13 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 int main() {
   int w_len;
   char dummy,c;
   int i;
   int j=0;
+  int match;
   while(1) {
-    scanf("%d%c",&w_len,&dummy);
+    match = scanf("%d%c",&w_len,&dummy);
     //printf("w_len = %d dummy= %c\n",w_len,dummy);
     char *word;
     int *table;
@@ -27,35 +27,41 @@ int main() {
     overlap[0] = -1;
     for(i=0;i<w_len;i++) {
       overlap[i+1] = overlap[i] + 1;
-      while(overlap[i+1] > 0 && word[i] != word[overlap[i+1] - 1])
+      while(overlap[i+1] > 0 && (word[i] != word[overlap[i+1] - 1]))
       {
-	  overlap[i+1] = overlap[overlap[i+1] - 1] + 1;
+		overlap[i+1] = overlap[overlap[i+1] - 1] + 1;
       }
     }
-    for(i=0;i<w_len;i++) {
+    /*for(i=0;i<w_len;i++) {
 	printf("%d ",overlap[i]);
-    }
+    }*/
     //printf("\n");
     //now we do the string matching
     int x=0;
     i=0;
     while(1) {
       c = getc(stdin);
-      
+	  i++;
+      if(c == '\n') {
+		if(i<w_len) printf("\n");
+		break;
+	  }
       if(c == word[x]) {
-	
-	if(x == w_len-1) {
-	 printf("we have a match at %d",i-x);
-	}
-	x++;
+		if(x == w_len-1) {
+		 printf("%d\n",i-x-1);
+		 x=overlap[x];
+		}  
+		x++;
+		
       } else if(x!=0) {
-	x = overlap[x]+1;
+		x = overlap[x]+1;
       }
-      i++;
+      
     }
     
     free(table);
     free(word);
+	free(overlap);
     
   }
  return 0;
